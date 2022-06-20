@@ -63,7 +63,7 @@ const arrayPost = [
 
 
 
-
+// console.log(picture)
 
  // richiamo la funzione
  createPost(arrayPost)
@@ -74,59 +74,65 @@ const arrayPost = [
 
 function createPost (posts){
     // creo un ciclo for che analizzi gli oggetti nell'array
-    for(i = 0; i < arrayPost.length; i++){
+    for(i = 0; i < posts.length; i++){
 
-    // richiamo il container dei post
-    let postContainer = document.getElementById('container');
-    // console.log(postContainer)
+        // richiamo il container dei post
+        let postContainer = document.getElementById('container');
+        // console.log(postContainer)
+        
+        
 
-    // salvo i singoli oggetti
-    let myPost = posts[i]
-    // console.log(myPost)
-    // console.log(myPost.name)
+        // salvo i singoli oggetti
+        let myPost = posts[i]
+        console.log(myPost);
 
-    let newPost = `
-    <div class="post__header">
-        <div class="post-meta">
-            <div class="post-meta__icon">
-                <img class="profile-pic" src=${arrayPost.picture} alt="Phil Mangione">
-            </div>
-            <div class="post-meta__data">
-                <div class="post-meta__author">${arrayPost.name}</div>
-                <div class="post-meta__time">${arrayPost.date}</div>
-            </div>
-        </div>
-    </div>
+        // oggetto da destrutturare
+        const { name, picture, date, text, img, like } = myPost;
+        console.log(name, picture, date, text, img, like)
 
-    <div class="post__text">
-        ""
-    </div>
+        // console.log(myPost)
+        // console.log(myPost.name)
 
-    <div class="post__image">
-        <img src= ${arrayPost.img} alt="">
-    </div>
-
-    <div class="post__footer">
-        <div class="likes js-likes">
-            <div class="likes__cta">
-                <a class="like-button  js-like-button" href="#" data-postid="1">
-                    <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                    <span class="like-button__label">Mi Piace</span>
-                </a>
-            </div>
-            <div class="likes__counter">
-                Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+        let newPost = `
+        <div class="post__header">
+            <div class="post-meta">
+                <div class="post-meta__icon">
+                    <img class="profile-pic" src=${picture === null ? 'https://unsplash.it/300/300?image= 5' : picture } alt="Phil Mangione">
+                </div>
+                <div class="post-meta__data">
+                    <div class="post-meta__author">${name}</div>
+                    <div class="post-meta__time">${date}</div>
+                </div>
             </div>
         </div>
-    </div>
-     `
-    console.log(newPost)
 
-    postContainer.innerHTML += newPost
+        <div class="post__text">
+            ${text}
+        </div>
 
-    // console.log(postContainer.innerHTML)
+        <div class="post__image">
+            <img src= ${img} alt="">
+        </div>
+
+        <div class="post__footer">
+            <div class="likes js-likes">
+                <div class="likes__cta">
+                    <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                        <span class="like-button__label">Mi Piace</span>
+                    </a>
+                </div>
+                <div class="likes__counter">
+                    Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+                </div>
+            </div>
+        </div>
+        `
+        console.log(newPost)
+
+        postContainer.innerHTML += newPost
+
+        // console.log(postContainer.innerHTML)
+    }
 }
 
-
-
-}
