@@ -86,36 +86,38 @@ function createPost (posts){
         // console.log(myPost.name)
 
         let newPost = `
-        <div class="post__header">
-            <div class="post-meta">
-                <div class="post-meta__icon">
-                    <img class="profile-pic" src=${picture === null ? 'https://unsplash.it/300/300?image= 5' : picture } alt="Phil Mangione">
-                </div>
-                <div class="post-meta__data">
-                    <div class="post-meta__author">${name}</div>
-                    <div class="post-meta__time">${date}</div>
+        <div class= "post"
+            <div class="post__header">
+                <div class="post-meta">
+                    <div class="post-meta__icon">
+                        <img class="profile-pic" src=${picture === null ? 'https://unsplash.it/300/300?image= 5' : picture } alt="Phil Mangione">
+                    </div>
+                    <div class="post-meta__data">
+                        <div class="post-meta__author">${name}</div>
+                        <div class="post-meta__time">${date}</div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="post__text">
-            ${text}
-        </div>
+            <div class="post__text">
+                ${text}
+            </div>
 
-        <div class="post__image">
-            <img src= ${img} alt="">
-        </div>
+            <div class="post__image">
+                <img src= ${img} alt="">
+            </div>
 
-        <div class="post__footer">
-            <div class="likes js-likes">
-                <div class="likes__cta">
-                    <a class="like-button  js-like-button" href="#" data-postid="1">
-                        <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                        <span class="like-button__label">Mi Piace</span>
-                    </a>
-                </div>
-                <div class="likes__counter">
-                    Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+            <div class="post__footer">
+                <div class="likes js-likes">
+                    <div class="likes__cta">
+                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                            <span class="like-button__label">Mi Piace</span>
+                        </a>
+                    </div>
+                    <div class="likes__counter">
+                        Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+                    </div>
                 </div>
             </div>
         </div>
@@ -129,27 +131,32 @@ function createPost (posts){
 }
 // richiamo il bottone per i like
 let likeButton = document.querySelectorAll('.likes__cta');
-// console.log(likeButton);
+console.log("queryselector: ", likeButton);
 
 // richiamo il testo correlato al click su like
-let numbersOfLike = document.querySelectorAll('.js-likes-counter')
-// console.log(numbersOfLike)
+let numbersOfLike = document.querySelectorAll('.likes__counter .js-likes-counter')
+console.log("queryselector: ",numbersOfLike)
 
 // scorro gli elementi e li salvo in una variabile
-for(i = 0; i < likeButton.length; i++){
-
+for(let i = 0; i< likeButton.length; i++){
     // salvo tutti gli elementi (mi piace)
-    let like = likeButton[i]
-    // console.log(like)
+    let like = likeButton[i];
     // creo la funzione click
-    like.addEventListener('click', 
-        function(){
-
+    like.addEventListener('click', function(event){
+            event.preventDefault();
             // creo una variabile per salvare gli elementi selezionati
-            let caption = numbersOfLike[i]
-            console.log(caption)
-        
+            let caption = numbersOfLike[i];
+            console.log(caption);
+            // tramutiamo il numero in un dato numerico
+            let captionNumber = parseInt(caption.innerHTML)
+            console.log(captionNumber)
 
+            // incrementiamo di 1 al click
+            captionNumber++
+            console.log( captionNumber++)
+
+            // stampo l'incremento
+            captionNumber.innerHTML = caption
         }
     )
             
