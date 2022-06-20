@@ -56,14 +56,6 @@ const arrayPost = [
 
 ]
 
-// salvo le key degli oggetti in delle variabili tramite la destrutturazione
-
-// const { name, picture, date, text, img, like} = arrayPost;
-// console.log(arrayPost)
-
-
-
-// console.log(picture)
 
  // richiamo la funzione
  createPost(arrayPost)
@@ -84,11 +76,11 @@ function createPost (posts){
 
         // salvo i singoli oggetti
         let myPost = posts[i]
-        console.log(myPost);
+        // console.log(myPost);
 
         // oggetto da destrutturare
         const { name, picture, date, text, img, like } = myPost;
-        console.log(name, picture, date, text, img, like)
+        // console.log(name, picture, date, text, img, like)
 
         // console.log(myPost)
         // console.log(myPost.name)
@@ -128,11 +120,38 @@ function createPost (posts){
             </div>
         </div>
         `
-        console.log(newPost)
+        // console.log(newPost)
 
         postContainer.innerHTML += newPost
 
         // console.log(postContainer.innerHTML)
     }
 }
+// richiamo il bottone per i like
+let likeButton = document.querySelectorAll('.likes__cta');
+// console.log(likeButton);
 
+// richiamo il testo correlato al click su like
+let numbersOfLike = document.querySelectorAll('.js-likes-counter')
+// console.log(numbersOfLike)
+
+// scorro gli elementi e li salvo in una variabile
+for(i = 0; i < likeButton.length; i++){
+
+    // salvo tutti gli elementi (mi piace)
+    let like = likeButton[i]
+    // console.log(like)
+    // creo la funzione click
+    like.addEventListener('click', 
+        function(){
+
+            // creo una variabile per salvare gli elementi selezionati
+            let caption = numbersOfLike[i]
+            console.log(caption)
+        
+
+        }
+    )
+            
+}
+        
