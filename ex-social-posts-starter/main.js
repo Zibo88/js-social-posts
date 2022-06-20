@@ -85,8 +85,9 @@ function createPost (posts){
         // console.log(myPost)
         // console.log(myPost.name)
 
-        let newPost = `
-        <div class= "post"
+        let newPost = 
+        `
+        <div class= "post">
             <div class="post__header">
                 <div class="post-meta">
                     <div class="post-meta__icon">
@@ -112,15 +113,16 @@ function createPost (posts){
                     <div class="likes__cta">
                         <a class="like-button  js-like-button" href="#" data-postid="1">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                            <span class="like-button__label">Mi Piace</span>
+                            <span class="like-button__label">Mi piace</span>
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+                        Piace a <b id="like-counter-1" class="js-likes-counter">${like}</b> persone
                     </div>
                 </div>
             </div>
         </div>
+
         `
         // console.log(newPost)
 
@@ -130,7 +132,7 @@ function createPost (posts){
     }
 }
 // richiamo il bottone per i like
-let likeButton = document.querySelectorAll('.likes__cta');
+let likeButton = document.querySelectorAll('.js-like-button');
 console.log("queryselector: ", likeButton);
 
 // richiamo il testo correlato al click su like
@@ -141,6 +143,8 @@ console.log("queryselector: ",numbersOfLike)
 for(let i = 0; i< likeButton.length; i++){
     // salvo tutti gli elementi (mi piace)
     let like = likeButton[i];
+    console.log(like)
+
     // creo la funzione click
     like.addEventListener('click', function(event){
             event.preventDefault();
@@ -153,10 +157,13 @@ for(let i = 0; i< likeButton.length; i++){
 
             // incrementiamo di 1 al click
             captionNumber++
-            console.log( captionNumber++)
+            console.log(captionNumber)
 
             // stampo l'incremento
-            captionNumber.innerHTML = caption
+            caption.innerHTML = captionNumber
+
+            this.classList.add('like-button--liked')
+            
         }
     )
             
