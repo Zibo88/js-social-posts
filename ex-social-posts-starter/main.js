@@ -91,7 +91,7 @@ function createPost (posts){
             <div class="post__header">
                 <div class="post-meta">
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src=${picture === null ? 'https://unsplash.it/300/300?image= 5' : picture } alt="Phil Mangione">
+                        <img class="profile-pic" src=${picture === null ? 'https://unsplash.it/300/300?image= 90' : picture } alt="Phil Mangione">
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${name}</div>
