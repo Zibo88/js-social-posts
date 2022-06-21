@@ -28,20 +28,20 @@ const arrayPost = [
     {
         id: 1,
         name: 'carlo',
-        picture:'https://unsplash.it/300/300?image = 1',
+        picture:'https://unsplash.it/300/300?image =1',
         date: '05-12-2021',
         text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit cumque, perferendis earum est laudantium consectetur molestias magni blanditiis',
-        img: 'https://unsplash.it/300/300?image= 2',
+        img: 'https://unsplash.it/300/300?image=2',
         like: 80,
     },
     // secondo post
     {
         id: 2,
         name: 'anna',
-        picture:'https://unsplash.it/300/300?image= 3',
+        picture:'https://unsplash.it/300/300?image=3',
         date: '05-11-2020',
         text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit cumque, perferendis earum est laudantium consectetur molestias magni blanditiis',
-        img: 'https://unsplash.it/300/300?image= 4',
+        img: 'https://unsplash.it/300/300?image=4',
         like: 90,
     },
     {
@@ -50,7 +50,7 @@ const arrayPost = [
         picture: null,
         date: '06-06-2022',
         text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit cumque, perferendis earum est laudantium consectetur molestias magni blanditiis',
-        img: 'https://unsplash.it/300/300?image= 5',
+        img: 'https://unsplash.it/300/300?image=5',
         like: 50,
     },
 
@@ -79,7 +79,7 @@ function createPost (posts){
         // console.log(myPost);
 
         // oggetto da destrutturare
-        const { name, picture, date, text, img, like } = myPost;
+        const { id, name, picture, date, text, img, like } = myPost;
         // console.log(name, picture, date, text, img, like)
 
         // console.log(myPost)
@@ -117,7 +117,7 @@ function createPost (posts){
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">${like}</b> persone
+                        Piace a <b id= ${id} class="js-likes-counter">${like}</b> persone
                     </div>
                 </div>
             </div>
@@ -131,7 +131,7 @@ function createPost (posts){
         // console.log(postContainer.innerHTML)
     }
 }
-// richiamo il bottone per i like
+// richiamo i bottoni per i like
 let likeButton = document.querySelectorAll('.js-like-button');
 console.log("queryselector: ", likeButton);
 
@@ -148,21 +148,28 @@ for(let i = 0; i< likeButton.length; i++){
     // creo la funzione click
     like.addEventListener('click', function(event){
             event.preventDefault();
-            // creo una variabile per salvare gli elementi selezionati
-            let caption = numbersOfLike[i];
-            console.log(caption);
-            // tramutiamo il numero in un dato numerico
-            let captionNumber = parseInt(caption.innerHTML)
-            console.log(captionNumber)
 
-            // incrementiamo di 1 al click
-            captionNumber++
-            console.log(captionNumber)
+            // aggiungi il like solo se l'elemento non ha gia la classe
+            // like-button--liked
+            if(!this.classList.contains('like-button--liked')){
+                 // creo una variabile per salvare gli elementi relativi che hanno lo stesso indice
+                let caption = numbersOfLike[i];
+                console.log(caption);
+                // tramutiamo il numero in un dato numerico
+                let captionNumber = parseInt(caption.innerHTML)
+                console.log(captionNumber)
 
-            // stampo l'incremento
-            caption.innerHTML = captionNumber
+                // incrementiamo di 1 al click
+                captionNumber++
+                console.log(captionNumber)
 
-            this.classList.add('like-button--liked')
+                // stampo l'incremento della variabile
+                caption.innerHTML = captionNumber
+
+                // aggiungo una classe
+                this.classList.add('like-button--liked');
+            }
+           
             
         }
     )
